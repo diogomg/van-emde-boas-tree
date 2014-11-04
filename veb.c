@@ -16,8 +16,12 @@ vEB* vEB_tree_member(vEB *V, int x){
         return NULL;
     else if(V->min == x || V->max == x)
         return V;
-    else
-        return vEB_tree_member(V->cluster[high(x, V->u)], low(x, V->u));
+    else{
+        if(V->cluster)
+            return vEB_tree_member(V->cluster[high(x, V->u)], low(x, V->u));
+        else
+            return NULL;
+    }
 }
 
 int vEB_tree_Minimum(vEB *V){
