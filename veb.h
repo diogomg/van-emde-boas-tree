@@ -21,6 +21,7 @@ int vEB_tree_Minimum(vEB *V);
 int vEB_tree_Maximum(vEB *V);
 
 vEB* vEB_tree_insert(vEB *V, int x, int u);
+vEB* vEB_tree_delete(vEB *V, int x, int u);
 
 void vEB_tree_print(vEB *V);
 
