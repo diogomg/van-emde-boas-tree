@@ -3,13 +3,13 @@ CC = gcc
 all: compile clean run
 
 compile: *.c
-	$(CC) -g3 -lm main.c veb.c -o veb
+	$(CC) -g3 main.c veb.c -lm -o veb
 
 valgrind: compile clean
 	valgrind --tool=memcheck --leak-check=yes -v ./veb
 
 test: test.c veb.c
-	$(CC) -lm test.c veb.c -o test
+	$(CC) test.c veb.c -lm -o test
 	./test
 
 run:
