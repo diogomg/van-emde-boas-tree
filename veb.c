@@ -34,12 +34,13 @@ int vEB_tree_Maximum(vEB *V){
     return V->max;
 }
 
-vEB* vEB_tree_insert(vEB *V, int x, int u){
+vEB* vEB_tree_insert(vEB *V, int x, int qtd, int u){
 
     if(!V){
         V = (vEB*)malloc(sizeof(vEB));
         V->min = V->max = x;
         V->u = u;
+        V->contMin = V->contMax = qtd;
         if(u > 2){
             V->summary = NULL;
             V->cluster = (vEB**)calloc(sqrt(u),sizeof(vEB*));
@@ -48,42 +49,72 @@ vEB* vEB_tree_insert(vEB *V, int x, int u){
             V->summary = NULL;
             V->cluster = NULL;
         }
-        return V;
+    }
+    else if(V->min == x){
+        V->contMin+=qtd;
+        if(V->max == x){
+            V->contMax+=qtd;
+        }
+    }
+    else if(V->max == x){
+        V->contMax+=qtd;
+        if(V->u > 2)
+            V->cluster[high(x, V->u)] =
+        vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), qtd, sqrt(V->u));
     }
     else{
         if(x < V->min){
             int aux = V->min;
             V->min = x;
             x = aux;
+            int qtdAux = V->contMin;
+            V->contMin = qtd;
+            qtd = qtdAux;
         }
         if(V->u > 2){
             if(V->cluster[high(x, V->u)] == NULL){
-                V->summary = vEB_tree_insert(V->summary, high(x, V->u), sqrt(V->u));
+                V->summary = vEB_tree_insert(V->summary, high(x, V->u), qtd, sqrt(V->u));
                 V->cluster[high(x, V->u)] =
-                vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), sqrt(V->u));
+                vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), qtd, sqrt(V->u));
             }
             else{
                 V->cluster[high(x, V->u)] =
-                vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), sqrt(V->u));
+                vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), qtd, sqrt(V->u));
             }
         }
-        if(x > V->max)
+        if(x > V->max){
             V->max = x;
-        return V;
+            V->contMax = qtd;
+        }
     }
+    return V;
 }
 
 vEB* vEB_tree_delete(vEB *V, int x, int u){
     if(V->min == V->max){
-        free(V);
-        return NULL;
+        if(V->contMin > 1){
+            V->contMin--;
+            V->contMax--;
+            return V;
+        }
+        else{
+            free(V);
+            return NULL;
+        }
     }
     else if(V->u == 2){
-        if(x == 0)
-            V->min = 1;
-        else
-            V->min = 0;
-        V->max = V->min;
+        if(x == 0){
+            if(!--V->contMin){
+                V->min = 1;
+                V->contMin = V->contMax;
+            }
+        }
+        else{
+            if(!--V->contMax){
+                V->max = 0;
+                V->contMax = V->contMin;
+            }
+        }
         return V;
     }
     else{
@@ -114,7 +145,16 @@ vEB* vEB_tree_delete(vEB *V, int x, int u){
 
 void vEB_tree_print(vEB *V){
     if(V){
-        printf("min: %d\tmax: %d\tu: %d\tsummary: %d\n", V->min, V->max, V->u, V->summary);
+        printf("min: %d\tmax: %d\tu: %d\tsummary: %d\tcontMin: %d\tcontMax: %d\n",
+         V->min, V->max, V->u, V->summary, V->contMin, V->contMax);
+        //vEB_tree_print(V->summary);
+        if(V->cluster){
+            int i, tam = sqrt(V->u);
+            for(i = 0; i < tam; i++){
+                vEB_tree_print(V->cluster[i]);
+            }
+            printf("\n\n");
+        }
         if(V->cluster){
             int i=0;
             printf("cluster: ");
@@ -125,14 +165,6 @@ void vEB_tree_print(vEB *V){
         }
         else{
             printf("cluster: 0\n");
-        }
-        vEB_tree_print(V->summary);
-        if(V->cluster){
-            int i, tam = sqrt(V->u);
-            for(i = 0; i < tam; i++){
-                vEB_tree_print(V->cluster[i]);
-            }
-            printf("\n\n");
         }
     }
 }
@@ -150,5 +182,21 @@ void vEB_tree_print_number(vEB *V){
                 vEB_tree_print_number(V->cluster[i]);
             }
         }
+    }
+}
+
+int vEB_tree_elements(vEB *V, int x){
+
+    if(!V)
+        return 0;
+    else if(V->min == x)
+        return V->contMin;
+    else if(V->max == x)
+        return V->contMax;
+    else{
+        if(V->cluster)
+            return vEB_tree_elements(V->cluster[high(x, V->u)], low(x, V->u));
+        else
+            return 0;
     }
 }

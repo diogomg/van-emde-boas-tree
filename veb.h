@@ -5,6 +5,7 @@
 typedef struct vEB{
     int u;
     int min, max;
+    int contMin, contMax;
     struct vEB *summary, **cluster;
 }vEB;
 
@@ -20,7 +21,10 @@ int vEB_tree_Minimum(vEB *V);
 
 int vEB_tree_Maximum(vEB *V);
 
-vEB* vEB_tree_insert(vEB *V, int x, int u);
+int vEB_tree_elements(vEB *V, int x);
+
+vEB* vEB_tree_insert(vEB *V, int x, int qtd, int u);
+
 vEB* vEB_tree_delete(vEB *V, int x, int u);
 
 void vEB_tree_print(vEB *V);
