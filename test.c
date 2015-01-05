@@ -440,7 +440,6 @@ TEST remove_two_equals_values_in_a_tree_tam_2(){
     PASS();
 }
 
-
 TEST remove_two_equals_values_in_a_tree_tam_4(){
 
     int u = 4;
@@ -530,12 +529,10 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_2(){
     PASS();
 }
 
-
 TEST remove_two_equals_values_among_others_in_a_tree_tam_4(){
 
     int u = 4;
     vEB *V = NULL;
-
 
     V = vEB_tree_insert(V, 0, 1, u);
     vEB *node = vEB_tree_member(V, 0);
@@ -563,18 +560,15 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_4(){
 
     ASSERT(vEB_tree_elements(V, 3) == 1);
 
-    vEB_tree_print(V);
     V = vEB_tree_delete(V, 1, u);
-    puts("***");
-    vEB_tree_print(V);
+
     node = vEB_tree_member(V, 1);
     ASSERT(node);
 
     ASSERT(vEB_tree_elements(V, 1) == 1);
 
     V = vEB_tree_delete(V, 1, u);
-    puts("***");
-    vEB_tree_print(V);
+
     node = vEB_tree_member(V, 1);
     ASSERT(!node);
 
@@ -659,8 +653,8 @@ SUITE( delete ){
 
 GREATEST_MAIN_DEFS();
 
-int main( int argc, char** argv )
-{
+int main( int argc, char** argv ){
+
     GREATEST_MAIN_BEGIN();
     RUN_SUITE( insert );
     RUN_SUITE( delete );
