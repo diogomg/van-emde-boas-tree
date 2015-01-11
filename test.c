@@ -538,42 +538,67 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_16(){
 
     V = vEB_tree_insert(V, 2, 1, u);
     V = vEB_tree_insert(V, 2, 1, u);
-    vEB *node = vEB_tree_member(V, 2);
-    ASSERT(node);
-
     V = vEB_tree_insert(V, 4, 1, u);
     V = vEB_tree_insert(V, 4, 1, u);
-    node = vEB_tree_member(V, 4);
-    ASSERT(node);
-
     V = vEB_tree_insert(V, 5, 1, u);
-    node = vEB_tree_member(V, 5);
-    ASSERT(node);
-
     V = vEB_tree_insert(V, 7, 1, u);
     V = vEB_tree_insert(V, 7, 1, u);
-    node = vEB_tree_member(V, 7);
-    ASSERT(node);
-
     V = vEB_tree_insert(V, 9, 1, u);
-    node = vEB_tree_member(V, 9);
-    ASSERT(node);
-
     V = vEB_tree_insert(V, 15, 1, u);
-    node = vEB_tree_member(V, 15);
-    ASSERT(node);
+
+    ASSERT(vEB_tree_elements(V, 0) == 0);
+    ASSERT(vEB_tree_elements(V, 1) == 0);
+    ASSERT(vEB_tree_elements(V, 2) == 2);
+    ASSERT(vEB_tree_elements(V, 3) == 0);
+    ASSERT(vEB_tree_elements(V, 4) == 2);
+    ASSERT(vEB_tree_elements(V, 5) == 1);
+    ASSERT(vEB_tree_elements(V, 6) == 0);
+    ASSERT(vEB_tree_elements(V, 7) == 2);
+    ASSERT(vEB_tree_elements(V, 8) == 0);
+    ASSERT(vEB_tree_elements(V, 9) == 1);
+    ASSERT(vEB_tree_elements(V, 10) == 0);
+    ASSERT(vEB_tree_elements(V, 11) == 0);
+    ASSERT(vEB_tree_elements(V, 12) == 0);
+    ASSERT(vEB_tree_elements(V, 13) == 0);
+    ASSERT(vEB_tree_elements(V, 14) == 0);
+    ASSERT(vEB_tree_elements(V, 15) == 1);
 
     V = vEB_tree_delete(V, 7, u);
-    node = vEB_tree_member(V, 7);
-    ASSERT(node);
-
+    ASSERT(vEB_tree_elements(V, 0) == 0);
+    ASSERT(vEB_tree_elements(V, 1) == 0);
+    ASSERT(vEB_tree_elements(V, 2) == 2);
+    ASSERT(vEB_tree_elements(V, 3) == 0);
+    ASSERT(vEB_tree_elements(V, 4) == 2);
+    ASSERT(vEB_tree_elements(V, 5) == 1);
+    ASSERT(vEB_tree_elements(V, 6) == 0);
     ASSERT(vEB_tree_elements(V, 7) == 1);
+    ASSERT(vEB_tree_elements(V, 8) == 0);
+    ASSERT(vEB_tree_elements(V, 9) == 1);
+    ASSERT(vEB_tree_elements(V, 10) == 0);
+    ASSERT(vEB_tree_elements(V, 11) == 0);
+    ASSERT(vEB_tree_elements(V, 12) == 0);
+    ASSERT(vEB_tree_elements(V, 13) == 0);
+    ASSERT(vEB_tree_elements(V, 14) == 0);
+    ASSERT(vEB_tree_elements(V, 15) == 1);
 
     V = vEB_tree_delete(V, 7, u);
-    node = vEB_tree_member(V, 7);
-    ASSERT(!node);
-
+    ASSERT(vEB_tree_elements(V, 0) == 0);
+    ASSERT(vEB_tree_elements(V, 1) == 0);
+    ASSERT(vEB_tree_elements(V, 2) == 2);
+    ASSERT(vEB_tree_elements(V, 3) == 0);
+    ASSERT(vEB_tree_elements(V, 4) == 2);
+    ASSERT(vEB_tree_elements(V, 5) == 1);
+    ASSERT(vEB_tree_elements(V, 6) == 0);
     ASSERT(vEB_tree_elements(V, 7) == 0);
+    ASSERT(vEB_tree_elements(V, 8) == 0);
+    ASSERT(vEB_tree_elements(V, 9) == 1);
+    ASSERT(vEB_tree_elements(V, 10) == 0);
+    ASSERT(vEB_tree_elements(V, 11) == 0);
+    ASSERT(vEB_tree_elements(V, 12) == 0);
+    ASSERT(vEB_tree_elements(V, 13) == 0);
+    ASSERT(vEB_tree_elements(V, 14) == 0);
+    ASSERT(vEB_tree_elements(V, 15) == 1);
+
     PASS();
 }
 
