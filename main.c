@@ -1,24 +1,25 @@
 #include "veb.h"
 
 int main(){
-    int u = 16, i, key;
+    int u = 4;
     vEB *V = NULL;
-    V = vEB_tree_insert(V, 2, u);
-    V = vEB_tree_insert(V, 3, u);
-    V = vEB_tree_insert(V, 4, u);
-    V = vEB_tree_insert(V, 5, u);
-    V = vEB_tree_insert(V, 7, u);
-    V = vEB_tree_insert(V, 14, u);
-    V = vEB_tree_insert(V, 15, u);
-    //vEB_tree_print_number(V);
-    printf("%d\n", vEB_tree_member(V, 2));
-    printf("%d\n", vEB_tree_member(V, 3));
-    printf("%d\n", vEB_tree_member(V, 4));
-    printf("%d\n", vEB_tree_member(V, 5));
-    printf("%d\n", vEB_tree_member(V, 7));
-    printf("%d\n", vEB_tree_member(V, 14));
-    printf("%d\n", vEB_tree_member(V, 15));
-    printf("%d\n", vEB_tree_member(V, 11));
-    vEB_tree_print_number(V);
+
+    V = vEB_tree_insert(V, 0, 1, u);
+    V = vEB_tree_insert(V, 1, 2, u);
+    V = vEB_tree_insert(V, 2, 1, u);
+
+    printf("there are %d elements 0\n", vEB_tree_elements(V, 0));
+    printf("there are %d elements 1\n", vEB_tree_elements(V, 1));
+    printf("there are %d elements 2\n", vEB_tree_elements(V, 2));
+    printf("there are %d elements 3\n\n", vEB_tree_elements(V, 3));
+
+    V = vEB_tree_delete(V, 0, u);
+    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 2, u);
+
+    printf("there are %d elements 0\n", vEB_tree_elements(V, 0));
+    printf("there are %d elements 1\n", vEB_tree_elements(V, 1));
+    printf("there are %d elements 2\n", vEB_tree_elements(V, 2));
+    printf("there are %d elements 3\n\n", vEB_tree_elements(V, 3));
     return 0;
 }
