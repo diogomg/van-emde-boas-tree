@@ -1,7 +1,13 @@
 van emde boas tree [![Build Status](https://travis-ci.org/diogomg/van-emde-boas-tree.svg?branch=master)](https://travis-ci.org/diogomg/van-emde-boas-tree) [![Coverage Status](https://coveralls.io/repos/diogomg/van-emde-boas-tree/badge.png?branch=master)](https://coveralls.io/r/diogomg/van-emde-boas-tree?branch=master)
 ==================
 
-A fast priority queue/tree/sort struct in a particular case. The vEB tree support operations in O(loglog u) time when it stores n unique keys, each an integer in the range 0 to u.
+A fast priority queue/tree/sort struct in a particular case. The vEB tree supports operations in O(loglog u) time when its keys are in the range 0 to u.
+
+Peculiarities of my vEB tree
+-----------------------------
+- The vEB provides a memory-management system that can allocate and free blocks of storage on request;
+- The element stored in the attribute max is not duplicate through the subtrees;
+- The tree allows multiple keys that has the same value;
 
 Operations
 ----------
@@ -14,4 +20,4 @@ Operations
 
 Space
 -----
-O(n)
+O(u)
