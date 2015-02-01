@@ -21,8 +21,12 @@ void insertBefore(listNode **node, keyType key);
 
 void removeByKey(listNode **node, keyType key);
 
+void removeFirst(listNode **node);
+
 void printInOrder(listNode *node);
 
 void printReverse(listNode *node);
 
 void merge(listNode **first_list, listNode **second_list);
+
+int countElements(listNode *node);

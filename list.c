@@ -4,6 +4,8 @@ listNode* initNode(keyType key){
     listNode *node = (listNode*)calloc(1, sizeof(listNode));
     if(!node)
         return NULL;
+    node->next = node;
+    node->prev = node;
     node->key = key;
     return node;
 }
@@ -69,6 +71,21 @@ void removeByKey(listNode **node, keyType key){
     free(aux);
 }
 
+void removeNode(listNode **node){
+    listNode *aux = *node;
+    if(aux == NULL)
+        return;
+    if(aux->next == aux){
+        *node = NULL;
+    }
+    else{
+        aux->prev->next = aux->next;
+        aux->next->prev = aux->prev;
+        *node = aux->next;
+    }
+    free(aux);
+}
+
 void printInOrder(listNode *node){
     listNode *aux = node;
     if(!aux)
@@ -94,4 +111,16 @@ void merge(listNode **first_list, listNode **second_list){
     (*second_list)->prev->next = (*first_list)->prev;
     (*first_list)->prev->prev = (*second_list)->prev;
     (*second_list)->prev = *first_list;
+}
+
+int countElements(listNode *node){
+    listNode *aux = node;
+    int count = 0;
+    if(!aux)
+        return count;
+    do{
+        count++;
+        aux = aux->prev;
+    }while(aux != node);
+    return count;
 }

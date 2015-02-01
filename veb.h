@@ -1,11 +1,12 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "list.h"
 
 typedef struct vEB{
     int u;
     int min, max;
-    int contMin, contMax;
+    listNode *listMin, *listMax;
     struct vEB *summary, **cluster;
 }vEB;
 
@@ -23,7 +24,9 @@ int vEB_tree_Maximum(vEB *V);
 
 int vEB_tree_elements(vEB *V, int x);
 
-vEB* vEB_tree_insert(vEB *V, int x, int qtd, int u);
+vEB* vEB_tree_insert(vEB *V, int value, int key, int u);
+
+vEB* vEB_tree_add(vEB *V, int x, listNode *list, int u);
 
 vEB* vEB_tree_delete(vEB *V, int x, int u);
 
