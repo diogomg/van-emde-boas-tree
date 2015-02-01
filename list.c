@@ -67,6 +67,7 @@ void removeByKey(listNode **node, keyType key){
     else{
         aux->prev->next = aux->next;
         aux->next->prev = aux->prev;
+        *node = aux->next;
     }
     free(aux);
 }

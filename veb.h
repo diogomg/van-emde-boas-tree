@@ -16,20 +16,20 @@ int low(int x, int u);
 
 //int index(int x, int y, int u);
 
-vEB* vEB_tree_member(vEB *V, int x);
+vEB* vEB_tree_member(vEB *veb, int x);
 
-int vEB_tree_Minimum(vEB *V);
+int vEB_tree_Minimum(vEB *veb);
 
-int vEB_tree_Maximum(vEB *V);
+int vEB_tree_Maximum(vEB *veb);
 
-int vEB_tree_elements(vEB *V, int x);
+int vEB_tree_elements(vEB *veb, int x);
 
-vEB* vEB_tree_insert(vEB *V, int value, int key, int u);
+vEB* vEB_tree_insert(vEB *veb, int value, int key, int u);
 
-vEB* vEB_tree_add(vEB *V, int x, listNode *list, int u);
+vEB* vEB_tree_add(vEB *veb, int x, listNode *list, int u);
 
-vEB* vEB_tree_delete(vEB *V, int x, int u);
+vEB* vEB_tree_delete(vEB *veb, int x, int ver, int u);
 
-void vEB_tree_print(vEB *V);
+void vEB_tree_print(vEB *veb);
 
-void vEB_tree_print_number(vEB *V);
+void vEB_tree_print_number(vEB *veb);

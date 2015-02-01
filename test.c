@@ -171,7 +171,7 @@ TEST remove_a_value_in_a_tree_tam_2(){
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 0);
 
-    V = vEB_tree_delete(V, 0, u);
+    V = vEB_tree_delete(V, 0, 1, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
@@ -184,13 +184,13 @@ TEST remove_two_values_in_a_tree_tam_2(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 2, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
 
-    V = vEB_tree_delete(V, 0, u);
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 0, 1, u);
+    V = vEB_tree_delete(V, 1, 2, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
@@ -210,7 +210,7 @@ TEST remove_a_value_in_a_tree_tam_4(){
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_delete(V, 0, u);
+    V = vEB_tree_delete(V, 0, 1, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -225,15 +225,15 @@ TEST remove_two_values_in_a_tree_tam_4(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 2, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_delete(V, 0, u);
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 0, 1, u);
+    V = vEB_tree_delete(V, 1, 2, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -248,17 +248,17 @@ TEST remove_three_values_in_a_tree_tam_4(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 2, 1, u);
+    V = vEB_tree_insert(V, 1, 3, u);
+    V = vEB_tree_insert(V, 2, 5, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 1);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_delete(V, 0, u);
-    V = vEB_tree_delete(V, 1, u);
-    V = vEB_tree_delete(V, 2, u);
+    V = vEB_tree_delete(V, 0, 1, u);
+    V = vEB_tree_delete(V, 1, 3, u);
+    V = vEB_tree_delete(V, 2, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -273,19 +273,19 @@ TEST remove_four_values_in_a_tree_tam_4(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 2, 1, u);
-    V = vEB_tree_insert(V, 3, 1, u);
+    V = vEB_tree_insert(V, 1, 3, u);
+    V = vEB_tree_insert(V, 2, 4, u);
+    V = vEB_tree_insert(V, 3, 5, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 1);
     ASSERT(vEB_tree_elements(V, 3) == 1);
 
-    V = vEB_tree_delete(V, 0, u);
-    V = vEB_tree_delete(V, 1, u);
-    V = vEB_tree_delete(V, 2, u);
-    V = vEB_tree_delete(V, 3, u);
+    V = vEB_tree_delete(V, 0, 1, u);
+    V = vEB_tree_delete(V, 1, 3, u);
+    V = vEB_tree_delete(V, 2, 4, u);
+    V = vEB_tree_delete(V, 3, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -299,9 +299,9 @@ TEST remove_four_values_in_a_tree_tam_16 ( ){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 7, 1, u);
-    V = vEB_tree_insert(V, 15, 1, u);
+    V = vEB_tree_insert(V, 1, 4, u);
+    V = vEB_tree_insert(V, 7, 6, u);
+    V = vEB_tree_insert(V, 15, 8, u);
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -319,10 +319,10 @@ TEST remove_four_values_in_a_tree_tam_16 ( ){
     ASSERT(vEB_tree_elements(V, 14) == 0);
     ASSERT(vEB_tree_elements(V, 15) == 1);
 
-    V = vEB_tree_delete(V, 0, u);
-    V = vEB_tree_delete(V, 1, u);
-    V = vEB_tree_delete(V, 7, u);
-    V = vEB_tree_delete(V, 15, u);
+    V = vEB_tree_delete(V, 0, 1, u);
+    V = vEB_tree_delete(V, 1, 4, u);
+    V = vEB_tree_delete(V, 7, 6, u);
+    V = vEB_tree_delete(V, 15, 8, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
@@ -350,15 +350,15 @@ TEST remove_two_equals_values_in_a_tree_tam_2(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 2);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 1, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 1);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
 
@@ -371,19 +371,19 @@ TEST remove_two_equals_values_in_a_tree_tam_4(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 2);
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 1, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -398,7 +398,7 @@ TEST remove_two_equals_values_in_a_tree_tam_16(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 7, 1, u);
-    V = vEB_tree_insert(V, 7, 1, u);
+    V = vEB_tree_insert(V, 7, 2, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -416,7 +416,7 @@ TEST remove_two_equals_values_in_a_tree_tam_16(){
     ASSERT(vEB_tree_elements(V, 14) == 0);
     ASSERT(vEB_tree_elements(V, 15) == 0);
 
-    V = vEB_tree_delete(V, 7, u);
+    V = vEB_tree_delete(V, 7, 1, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -435,7 +435,7 @@ TEST remove_two_equals_values_in_a_tree_tam_16(){
     ASSERT(vEB_tree_elements(V, 15) == 0);
 
 
-    V = vEB_tree_delete(V, 7, u);
+    V = vEB_tree_delete(V, 7, 2, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 0);
@@ -462,21 +462,21 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_2(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 0, 1, u);
-    V = vEB_tree_insert(V, 0, 1, u);
+    V = vEB_tree_insert(V, 0, 2, u);
+    V = vEB_tree_insert(V, 0, 3, u);
     ASSERT(vEB_tree_elements(V, 0) == 3);
     ASSERT(vEB_tree_elements(V, 1) == 0);
 
-    V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 4, u);
+    V = vEB_tree_insert(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 3);
     ASSERT(vEB_tree_elements(V, 1) == 2);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 5, u);
     ASSERT(vEB_tree_elements(V, 0) == 3);
     ASSERT(vEB_tree_elements(V, 1) == 1);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 4, u);
     ASSERT(vEB_tree_elements(V, 0) == 3);
     ASSERT(vEB_tree_elements(V, 1) == 0);
 
@@ -494,35 +494,35 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_4(){
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_insert(V, 1, 1, u);
-    V = vEB_tree_insert(V, 1, 1, u);
+    V = vEB_tree_insert(V, 1, 2, u);
+    V = vEB_tree_insert(V, 1, 3, u);
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 2);
     ASSERT(vEB_tree_elements(V, 2) == 0);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_insert(V, 2, 1, u);
-    V = vEB_tree_insert(V, 2, 1, u);
+    V = vEB_tree_insert(V, 2, 4, u);
+    V = vEB_tree_insert(V, 2, 5, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 2);
     ASSERT(vEB_tree_elements(V, 2) == 2);
     ASSERT(vEB_tree_elements(V, 3) == 0);
 
-    V = vEB_tree_insert(V, 3, 1, u);
+    V = vEB_tree_insert(V, 3, 6, u);
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 2);
     ASSERT(vEB_tree_elements(V, 2) == 2);
     ASSERT(vEB_tree_elements(V, 3) == 1);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 2, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 1);
     ASSERT(vEB_tree_elements(V, 2) == 2);
     ASSERT(vEB_tree_elements(V, 3) == 1);
 
-    V = vEB_tree_delete(V, 1, u);
+    V = vEB_tree_delete(V, 1, 3, u);
     ASSERT(vEB_tree_elements(V, 0) == 1);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 2);
@@ -537,14 +537,14 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_16(){
     vEB *V = NULL;
 
     V = vEB_tree_insert(V, 2, 1, u);
-    V = vEB_tree_insert(V, 2, 1, u);
-    V = vEB_tree_insert(V, 4, 1, u);
-    V = vEB_tree_insert(V, 4, 1, u);
-    V = vEB_tree_insert(V, 5, 1, u);
-    V = vEB_tree_insert(V, 7, 1, u);
-    V = vEB_tree_insert(V, 7, 1, u);
-    V = vEB_tree_insert(V, 9, 1, u);
-    V = vEB_tree_insert(V, 15, 1, u);
+    V = vEB_tree_insert(V, 2, 2, u);
+    V = vEB_tree_insert(V, 4, 3, u);
+    V = vEB_tree_insert(V, 4, 4, u);
+    V = vEB_tree_insert(V, 5, 5, u);
+    V = vEB_tree_insert(V, 7, 6, u);
+    V = vEB_tree_insert(V, 7, 7, u);
+    V = vEB_tree_insert(V, 9, 8, u);
+    V = vEB_tree_insert(V, 15, 9, u);
 
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
@@ -563,7 +563,7 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_16(){
     ASSERT(vEB_tree_elements(V, 14) == 0);
     ASSERT(vEB_tree_elements(V, 15) == 1);
 
-    V = vEB_tree_delete(V, 7, u);
+    V = vEB_tree_delete(V, 7, 6, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 2);
@@ -581,7 +581,7 @@ TEST remove_two_equals_values_among_others_in_a_tree_tam_16(){
     ASSERT(vEB_tree_elements(V, 14) == 0);
     ASSERT(vEB_tree_elements(V, 15) == 1);
 
-    V = vEB_tree_delete(V, 7, u);
+    V = vEB_tree_delete(V, 7, 7, u);
     ASSERT(vEB_tree_elements(V, 0) == 0);
     ASSERT(vEB_tree_elements(V, 1) == 0);
     ASSERT(vEB_tree_elements(V, 2) == 2);
