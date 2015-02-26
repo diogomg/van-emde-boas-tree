@@ -12,6 +12,9 @@ test: test.c veb.c
 	$(CC) -fprofile-arcs -ftest-coverage -g test.c veb.c -lm -o test
 	./test
 
+coverage: veb.gcda
+	gcov veb.gcda
+
 run:
 	./veb
 

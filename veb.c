@@ -53,13 +53,18 @@ vEB* vEB_tree_insert(vEB *V, int x, int qtd, int u){
     else if(V->min == x){
         V->contMin+=qtd;
         if(V->max == x)
-            V->contMax+=qtd;
+            V->contMax = V->contMin;
     }
     else if(V->max == x){
         V->contMax+=qtd;
     }
     else{
         if(x < V->min){
+            if(V->min == V->max){
+                V->min = x;
+                V->contMin = qtd;
+                return V;
+            }
             int aux = V->min;
             V->min = x;
             x = aux;
@@ -79,7 +84,7 @@ vEB* vEB_tree_insert(vEB *V, int x, int qtd, int u){
         }
         if(V->u > 2){
             if(V->cluster[high(x, V->u)] == NULL){
-                V->summary = vEB_tree_insert(V->summary, high(x, V->u), qtd, sqrt(V->u));
+                V->summary = vEB_tree_insert(V->summary, high(x, V->u), 1, sqrt(V->u));
             }
             V->cluster[high(x, V->u)] =
             vEB_tree_insert(V->cluster[high(x, V->u)], low(x, V->u), qtd, sqrt(V->u));
@@ -121,6 +126,9 @@ vEB* vEB_tree_delete(vEB *V, int x, int u){
                     int new_min = vEB_tree_Minimum(V->cluster[first_cluster]);
                     V->min = first_cluster * (int)sqrt(V->u) + new_min;
                     V->contMin = V->cluster[first_cluster]->contMin;
+                    (V->cluster[first_cluster])->contMin = 1;
+                    if((V->cluster[first_cluster])->min == (V->cluster[first_cluster])->max)
+                        (V->cluster[first_cluster])->contMax = 1;
                     V->cluster[first_cluster] = vEB_tree_delete(V->cluster[first_cluster], new_min, sqrt(V->u));
                     if(V->cluster[first_cluster] == NULL)
                         V->summary = vEB_tree_delete(V->summary, first_cluster, sqrt(V->u));
@@ -138,6 +146,9 @@ vEB* vEB_tree_delete(vEB *V, int x, int u){
                     int new_max = vEB_tree_Maximum(V->cluster[last_cluster]);
                     V->max = last_cluster * (int)sqrt(V->u) + new_max;
                     V->contMax = V->cluster[last_cluster]->contMax;
+                    (V->cluster[last_cluster])->contMax = 1;
+                    if((V->cluster[last_cluster])->min == (V->cluster[last_cluster])->max)
+                        (V->cluster[last_cluster])->contMin = 1;
                     V->cluster[last_cluster] = vEB_tree_delete(V->cluster[last_cluster], new_max, sqrt(V->u));
                     if(V->cluster[last_cluster] == NULL)
                         V->summary = vEB_tree_delete(V->summary, last_cluster, sqrt(V->u));
