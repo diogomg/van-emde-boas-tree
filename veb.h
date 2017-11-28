@@ -30,3 +30,5 @@ vEB* vEB_tree_delete(vEB *V, int x, int u);
 void vEB_tree_print(vEB *V);
 
 void vEB_tree_print_number(vEB *V);
+
+void vEB_tree_shutdown(vEB *V);

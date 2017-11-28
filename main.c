@@ -21,5 +21,7 @@ int main(){
     printf("there are %d elements 1\n", vEB_tree_elements(V, 1));
     printf("there are %d elements 2\n", vEB_tree_elements(V, 2));
     printf("there are %d elements 3\n\n", vEB_tree_elements(V, 3));
+
+    vEB_tree_shutdown(V);
     return 0;
 }
