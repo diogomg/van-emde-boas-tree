@@ -222,3 +222,11 @@ int vEB_tree_elements(vEB *V, int x){
             return 0;
     }
 }
+
+void vEB_tree_shutdown(vEB* V) {
+  if(NULL == V)
+    return;
+  if (NULL != V->cluster)
+    free(V->cluster);
+  free(V);
+}
